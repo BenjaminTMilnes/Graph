@@ -71,7 +71,6 @@ namespace Graph
             foreach (var xmlNode in xmlNodes)
             {
                 elements.Add(ImportElement(xmlNode as XmlNode));
-
             }
 
             return elements;
