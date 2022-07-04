@@ -9,7 +9,7 @@ namespace Graph
 {
     public class Importer
     {
-        public static Document ImportDocument(string filePath)
+        public virtual Document ImportDocument(string filePath)
         {
             var xmlDocument = new XmlDocument();
 
@@ -64,7 +64,7 @@ namespace Graph
             return document;
         }
 
-        public static IList<IElement> ImportElements(XmlNodeList xmlNodes)
+        public virtual IList<IElement> ImportElements(XmlNodeList xmlNodes)
         {
             var elements = new List<IElement>();
 
@@ -76,7 +76,7 @@ namespace Graph
             return elements;
         }
 
-        public static IElement ImportElement(XmlNode xmlNode)
+        public virtual IElement ImportElement(XmlNode xmlNode)
         {
             if (xmlNode is XmlElement)
             {
