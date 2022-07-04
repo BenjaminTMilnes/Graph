@@ -9,14 +9,14 @@ namespace Graph
 {
     public class LaTeXExporter
     {
-        public static void ExportDocument(Document document, string filePath)
+        public virtual void ExportDocument(Document document, string filePath)
         {
             var t = ExportDocument(document);
 
             File.WriteAllText(filePath, t, Encoding.UTF8);
         }
 
-        public static string ExportDocument(Document document)
+        public virtual string ExportDocument(Document document)
         {
             var t = "";
 
@@ -39,20 +39,19 @@ namespace Graph
             return t;
         }
 
-        public static string ExportElements(IList<IElement> elements)
+        public virtual string ExportElements(IList<IElement> elements)
         {
             var t = "";
 
             foreach (var element in elements)
             {
                 t += ExportElement(element);
-
             }
 
             return t;
         }
 
-        public static string ExportElement(IElement element)
+        public virtual string ExportElement(IElement element)
         {
             if (element is FlowElement)
             {
