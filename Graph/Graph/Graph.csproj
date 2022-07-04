@@ -47,6 +47,7 @@
     <Compile Include="Heading.cs" />
     <Compile Include="IElement.cs" />
     <Compile Include="Importer.cs" />
+    <Compile Include="LaTeXExporter.cs" />
     <Compile Include="LineBreak.cs" />
     <Compile Include="PageBreak.cs" />
     <Compile Include="Paragraph.cs" />

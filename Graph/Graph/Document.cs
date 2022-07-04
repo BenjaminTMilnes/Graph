@@ -20,7 +20,13 @@ namespace Graph
 
         public Document()
         {
+            Title = "";
+            Subtitle = "";
+            Abstract = "";
             Keywords = new List<string>();
+            Draft = "";
+            Edition = "";
+            ISBN = "";
             PublicationDate = DateTime.Now;
             Sections = new List<Section>();
         }
