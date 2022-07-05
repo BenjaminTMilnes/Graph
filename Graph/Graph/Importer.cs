@@ -115,6 +115,30 @@ namespace Graph
 
                     return element;
                 }
+                if (xmlElement.Name == "unordered-list" || xmlElement.Name == "ul")
+                {
+                    var element = new UnorderedList();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
+                if (xmlElement.Name == "ordered-list" || xmlElement.Name == "ol")
+                {
+                    var element = new OrderedList();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
+                if (xmlElement.Name == "list-item" || xmlElement.Name == "li")
+                {
+                    var element = new ListItem();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
                 if (xmlElement.Name == "line-break" || xmlElement.Name == "lb")
                 {
                     var element = new LineBreak();

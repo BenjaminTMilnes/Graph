@@ -49,11 +49,14 @@
     <Compile Include="Importer.cs" />
     <Compile Include="LaTeXExporter.cs" />
     <Compile Include="LineBreak.cs" />
+    <Compile Include="ListItem.cs" />
+    <Compile Include="OrderedList.cs" />
     <Compile Include="PageBreak.cs" />
     <Compile Include="Paragraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Section.cs" />
     <Compile Include="TextElement.cs" />
+    <Compile Include="UnorderedList.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

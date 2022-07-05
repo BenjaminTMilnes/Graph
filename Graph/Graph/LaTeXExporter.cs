@@ -21,10 +21,9 @@ namespace Graph
             var t = "";
 
             t += "\\documentclass{book}\n";
-            t += "\\usepackage[utf8]{inputenc}\n";
-            t += "\\usepackage[a4paper, margin=2.5cm]{geometry}\n";
-            t += "\\usepackage{fancyhdr}\n";
-            t += "\\usepackage{tikz}\n\n";
+
+            t += ExportUsePackages(document);
+
             t += "\\setlength{\\parindent}{0pt}\n\n";
             t += $"\\title{{{document.Title}}}\n\n";
             t += "\\begin{document}\n\n";
@@ -35,6 +34,19 @@ namespace Graph
             }
 
             t += "\n\n\\end{document}";
+
+            return t;
+        }
+
+        public virtual string ExportUsePackages(Document document)
+        {
+            var t = "";
+
+            t += "\\usepackage[utf8]{inputenc}\n";
+            t += "\\usepackage[a4paper, margin=2.5cm]{geometry}\n";
+            t += "\\usepackage{fancyhdr}\n";
+            t += "\\usepackage{tikz}\n\n";
+            t += "\\usepackage{blindtext}\n\n";
 
             return t;
         }
@@ -61,7 +73,7 @@ namespace Graph
                 }
                 else if (element is Paragraph || element is Division)
                 {
-                    return string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e)));
+                    return "\n\n" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e)));
                 }
                 else if (element is Heading)
                 {
@@ -69,32 +81,44 @@ namespace Graph
 
                     if (heading.Level == 1)
                     {
-                        return "\\part{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\part{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 2)
                     {
-                        return "\\chapter{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\chapter{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 3)
                     {
-                        return "\\section*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\section*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 4)
                     {
-                        return "\\subsection*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\subsection*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 5)
                     {
-                        return "\\subsubsection*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\subsubsection*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 6)
                     {
-                        return "\\paragraph*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\paragraph*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
                     if (heading.Level == 7)
                     {
-                        return "\\subparagraph*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                        return "\n\n\\subparagraph*{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
                     }
+                }
+                else if (element is UnorderedList)
+                {
+                    return "\n\n\\begin{itemize}\n\t\\setlength{\\itemsep}{-0.25em}" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "\n\\end{itemize}";
+                }
+                else if (element is OrderedList)
+                {
+                    return "\n\n\\begin{enumerate}\n\t\\setlength{\\itemsep}{-0.25em}" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "\n\\end{enumerate}";
+                }
+                else if (element is ListItem)
+                {
+                    return "\n\t\\item " + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e)));
                 }
             }
             else if (element is TextElement)
