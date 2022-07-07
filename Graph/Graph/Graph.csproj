@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Bold.cs" />
+    <Compile Include="Description.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Figure.cs" />

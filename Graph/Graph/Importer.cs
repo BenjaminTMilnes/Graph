@@ -180,6 +180,22 @@ namespace Graph
 
                     return element;
                 }
+                if (xmlElement.Name == "description")
+                {
+                    var element = new Description();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
+                if (xmlElement.Name == "address")
+                {
+                    var element = new Address();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
                 if (xmlElement.Name == "page-break" || xmlElement.Name == "pb")
                 {
                     var element = new PageBreak();

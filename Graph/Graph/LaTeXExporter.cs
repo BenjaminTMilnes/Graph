@@ -130,11 +130,19 @@ namespace Graph
                 }
                 else if (element is Image)
                 {
-                    return "\\includegraphics{" + (element as Image).Location + "}";
+                    return "\n\\includegraphics{" + (element as Image).Location + "}";
                 }
                 else if (element is Figure)
                 {
-                    return "\n\n\\begin{figure}[h]\n" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "\n\\end{figure}";
+                    return "\n\n\\begin{figure}[h]" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "\n\\end{figure}";
+                }
+                else if (element is Description)
+                {
+                    return "\n\\caption{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                }
+                else if (element is Address)
+                {
+                    return string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e)));
                 }
                 else if (element is PageBreak)
                 {
