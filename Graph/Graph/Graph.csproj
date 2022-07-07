@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bold.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="Figure.cs" />
     <Compile Include="FlowElement.cs" />
     <Compile Include="Heading.cs" />
     <Compile Include="IElement.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Importer.cs" />
+    <Compile Include="Italic.cs" />
     <Compile Include="LaTeXExporter.cs" />
     <Compile Include="LineBreak.cs" />
     <Compile Include="ListItem.cs" />

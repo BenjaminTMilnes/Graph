@@ -139,9 +139,44 @@ namespace Graph
 
                     return element;
                 }
+                if (xmlElement.Name == "italic" || xmlElement.Name == "i")
+                {
+                    var element = new Italic();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
+                if (xmlElement.Name == "bold" || xmlElement.Name == "b")
+                {
+                    var element = new Bold();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
+
+                    return element;
+                }
                 if (xmlElement.Name == "line-break" || xmlElement.Name == "lb")
                 {
                     var element = new LineBreak();
+
+                    return element;
+                }
+                if (xmlElement.Name == "image")
+                {
+                    var element = new Image();
+
+                    if (xmlElement.HasAttribute("location"))
+                    {
+                        element.Location = xmlElement.GetAttribute("location");
+                    }
+
+                    return element;
+                }
+                if (xmlElement.Name == "figure" || xmlElement.Name == "f")
+                {
+                    var element = new Figure();
+
+                    element.Subelements = ImportElements(xmlElement.ChildNodes);
 
                     return element;
                 }

@@ -120,6 +120,26 @@ namespace Graph
                 {
                     return "\n\t\\item " + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e)));
                 }
+                else if (element is Italic)
+                {
+                    return "\\textit{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                }
+                else if (element is Bold)
+                {
+                    return "\\textbf{" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "}";
+                }
+                else if (element is Image)
+                {
+                    return "\\includegraphics{" + (element as Image).Location + "}";
+                }
+                else if (element is Figure)
+                {
+                    return "\n\n\\begin{figure}[h]\n" + string.Join("", (element as FlowElement).Subelements.Select(e => ExportElement(e))) + "\n\\end{figure}";
+                }
+                else if (element is PageBreak)
+                {
+                    return "\n\n\\newpage";
+                }
             }
             else if (element is TextElement)
             {
